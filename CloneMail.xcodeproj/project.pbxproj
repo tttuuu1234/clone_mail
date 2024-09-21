@@ -12,6 +12,8 @@
 		A59EB6C92C9B92C900512407 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59EB6C82C9B92C900512407 /* Item.swift */; };
 		A59EB6CB2C9B92CB00512407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A59EB6CA2C9B92CB00512407 /* Assets.xcassets */; };
 		A59EB6CE2C9B92CB00512407 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A59EB6CD2C9B92CB00512407 /* Preview Assets.xcassets */; };
+		A59EB6D52C9B932100512407 /* MailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59EB6D42C9B932100512407 /* MailTopView.swift */; };
+		A59EB6D72C9B941500512407 /* DamyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59EB6D62C9B941500512407 /* DamyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		A59EB6C82C9B92C900512407 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A59EB6CA2C9B92CB00512407 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A59EB6CD2C9B92CB00512407 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A59EB6D42C9B932100512407 /* MailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTopView.swift; sourceTree = "<group>"; };
+		A59EB6D62C9B941500512407 /* DamyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 				A59EB6C82C9B92C900512407 /* Item.swift */,
 				A59EB6CA2C9B92CB00512407 /* Assets.xcassets */,
 				A59EB6CC2C9B92CB00512407 /* Preview Content */,
+				A59EB6D42C9B932100512407 /* MailTopView.swift */,
+				A59EB6D62C9B941500512407 /* DamyView.swift */,
 			);
 			path = CloneMail;
 			sourceTree = "<group>";
@@ -141,8 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59EB6C72C9B92C900512407 /* ContentView.swift in Sources */,
+				A59EB6D52C9B932100512407 /* MailTopView.swift in Sources */,
 				A59EB6C92C9B92C900512407 /* Item.swift in Sources */,
 				A59EB6C52C9B92C900512407 /* CloneMailApp.swift in Sources */,
+				A59EB6D72C9B941500512407 /* DamyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
