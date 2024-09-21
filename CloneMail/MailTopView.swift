@@ -16,43 +16,38 @@ struct MailViewItem: Identifiable {
 struct MailCategoryItem: Identifiable {
     let id = UUID()
     let label: String
+    var isExpanded: Bool = false
     let mailViewItemList: [MailViewItem]
 }
 
 struct MailTopView: View {
-//    let defaultList = [
-//        MailViewItem(label: "受信", image: "tray"),
-//        MailViewItem(label: "VIP", image: "star")
-//    ]
-//    let categoryList = [
-//        MailCategoryItem(label: "Gmail", mailViewItemList: [
-//            MailViewItem(label: "下書き", image: ""),
-//            MailViewItem(label: "送信済み", image: "")
-//        ])
-//    ]
-    
-    
-    @State var isExpandedGmail: Bool = false
+    @State var categoryList = [
+        MailCategoryItem(label: "", mailViewItemList: [
+            MailViewItem(label: "受信", image: "tray"),
+        ]),
+        MailCategoryItem(label: "Gmail", mailViewItemList: [
+            MailViewItem(label: "下書き", image: "tray"),
+            MailViewItem(label: "送信済み", image: "tray")
+        ])
+    ]
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    NavigationLink {
-                        DamyView()
-                    } label: {
-                        Label("受信", systemImage: "tray")
-                    }
-                }
-                Section(isExpanded: $isExpandedGmail) {
-                    NavigationLink {
-                        DamyView()
-                    } label: {
-                        Label("受信", systemImage: "tray")
+            List(categoryList) { item in
+                Section(){
+                    ForEach(item.mailViewItemList) { mailItem in
+                        NavigationLink {
+                            DamyView()
+                        } label: {
+                            Label(mailItem.label, systemImage: mailItem.image)
+                        }
+                        
                     }
                 } header: {
-                    Text("Gmail")
-                        .listRowInsets(.init())
+                    if !item.label.isEmpty {
+                        Text(item.label)
+                            .listRowInsets(.init())
+                    }
                 }
                 .headerProminence(.increased)
             }
