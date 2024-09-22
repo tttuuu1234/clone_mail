@@ -8,33 +8,52 @@
 import SwiftUI
 
 struct MailViewItem: Identifiable {
-    let id = UUID()
+    let id: UUID
     let label: String
     let image: String
+    
+    func copyWith(label: String?, image: String?) -> MailViewItem {
+        MailViewItem(id: self.id, label: label ?? self.label, image: image ?? self.image)
+    }
 }
 
 struct MailCategoryItem: Identifiable {
-    let id = UUID()
+    let id: UUID
     let label: String
     var isExpanded: Bool = false
-    let mailViewItemList: [MailViewItem]
+    var mailViewItemList: [MailViewItem]
+    
+    func copyWith(label: String? = nil, isExpanded: Bool?, mailViewItemList: [MailViewItem]? = nil) -> MailCategoryItem {
+        MailCategoryItem(id: self.id, label: label ?? self.label, isExpanded: isExpanded ?? self.isExpanded, mailViewItemList: mailViewItemList ?? self.mailViewItemList)
+    }
 }
 
 struct MailTopView: View {
     @State var categoryList = [
-        MailCategoryItem(label: "", mailViewItemList: [
-            MailViewItem(label: "受信", image: "tray"),
+        MailCategoryItem(id: UUID(), label: "", isExpanded: true, mailViewItemList: [
+            MailViewItem(id: UUID(), label: "受信", image: "tray"),
         ]),
-        MailCategoryItem(label: "Gmail", mailViewItemList: [
-            MailViewItem(label: "下書き", image: "tray"),
-            MailViewItem(label: "送信済み", image: "tray")
+        MailCategoryItem(id: UUID(), label: "Gmail", mailViewItemList: [
+            MailViewItem(id: UUID(), label: "下書き", image: "tray"),
+            MailViewItem(id: UUID(), label: "送信済み", image: "tray")
         ])
     ]
-
+    
     var body: some View {
         NavigationStack {
             List(categoryList) { item in
-                Section(){
+                Section(
+                    isExpanded: Binding(
+                        get: { item.isExpanded },
+                        set: {newValue in
+                            let newItem = item.copyWith(isExpanded: newValue)
+                            if let index = categoryList.firstIndex(where: {$0.id == item.id}) {
+                                print(index)
+                                categoryList[index] = newItem
+                            }
+                        }
+                    )
+                ){
                     ForEach(item.mailViewItemList) { mailItem in
                         NavigationLink {
                             DamyView()
