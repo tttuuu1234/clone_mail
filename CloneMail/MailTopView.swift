@@ -47,9 +47,17 @@ struct MailTopView: View {
                         get: { item.isExpanded },
                         set: {newValue in
                             let newItem = item.copyWith(isExpanded: newValue)
+                            // swiftではnilが入る可能性のある変数はoptional型になる。
+                            // optional型の変数を使用するには、値がnilでないことを明示的にする必要がある。
+                            // 変数にoptional型を適用することを、optional型でラップするという。→ var hoge: String?
+                            // optional型の変数の値がnilでない保証をすることを、アンラップするという。→ if let hoge = hoge {}
+                            // firstIndexメソッドの戻り値はint?でoptionalなint型なので、if let文でindexはnilでないことを保証した上でクロージャ内でindexを使用している。
+                            // indexがnilならelseの方に入る。
                             if let index = categoryList.firstIndex(where: {$0.id == item.id}) {
                                 print(index)
                                 categoryList[index] = newItem
+                            } else {
+                                print("存在しないindex")
                             }
                         }
                     )
