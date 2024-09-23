@@ -11,6 +11,7 @@ struct MailViewItem: Identifiable {
     let id: UUID
     let label: String
     let image: String
+    var imageColor: Color = .blue
     
     func copyWith(label: String?, image: String?) -> MailViewItem {
         MailViewItem(id: self.id, label: label ?? self.label, image: image ?? self.image)
@@ -32,6 +33,7 @@ struct MailTopView: View {
     @State var categoryList = [
         MailCategoryItem(id: UUID(), label: "", isExpanded: true, mailViewItemList: [
             MailViewItem(id: UUID(), label: "受信", image: "tray"),
+            MailViewItem(id: UUID(), label: "VIP", image: "star", imageColor: .yellow)
         ]),
         MailCategoryItem(id: UUID(), label: "Gmail", mailViewItemList: [
             MailViewItem(id: UUID(), label: "下書き", image: "tray"),
@@ -66,7 +68,14 @@ struct MailTopView: View {
                         NavigationLink {
                             DamyView()
                         } label: {
-                            Label(mailItem.label, systemImage: mailItem.image)
+                            // 文字と画像で別々にスタイルを適用したいため。
+                            Label(title: {
+                                Text(mailItem.label)
+                            }, icon: {
+                                Image(systemName: mailItem.image)
+                                    .foregroundStyle(mailItem.imageColor)
+                            })
+                                
                         }
                         
                     }
@@ -79,6 +88,11 @@ struct MailTopView: View {
                 .headerProminence(.increased)
             }
             .navigationTitle("メールボックス")
+            .toolbar(content: {
+                Button(action: {}, label: {
+                    Text("編集")
+                })
+            })
             .listStyle(.sidebar)
         }
     }
