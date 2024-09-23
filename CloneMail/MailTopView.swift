@@ -36,8 +36,8 @@ struct MailTopView: View {
             MailViewItem(id: UUID(), label: "VIP", image: "star", imageColor: .yellow)
         ]),
         MailCategoryItem(id: UUID(), label: "Gmail", mailViewItemList: [
-            MailViewItem(id: UUID(), label: "下書き", image: "tray"),
-            MailViewItem(id: UUID(), label: "送信済み", image: "tray")
+            MailViewItem(id: UUID(), label: "下書き", image: "doc"),
+            MailViewItem(id: UUID(), label: "送信済み", image: "paperplane")
         ])
     ]
     
